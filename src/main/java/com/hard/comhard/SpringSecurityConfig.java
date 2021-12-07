@@ -1,5 +1,7 @@
-package com.hard.comhard.security;
+package com.hard.comhard;
 
+import com.hard.comhard.security.JwtCsrfFilter;
+import com.hard.comhard.security.JwtTokenRepository;
 import com.hard.comhard.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

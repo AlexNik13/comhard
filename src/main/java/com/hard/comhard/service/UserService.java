@@ -2,6 +2,7 @@ package com.hard.comhard.service;
 
 import com.hard.comhard.model.User;
 import com.hard.comhard.repository.UserRepository;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -35,6 +37,5 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException(String.format("User %s is not found", login));
         }
         return new org.springframework.security.core.userdetails.User(u.getLogin(), u.getPassword(), true, true, true, true, new HashSet<>());
-
     }
 }

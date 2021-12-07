@@ -1,7 +1,8 @@
-package com.hard.comhard.security;
+package com.hard.comhard;
 
-
+import com.hard.comhard.security.JwtTokenRepository;
 import lombok.Getter;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.session.SessionAuthenticationException;
 import org.springframework.security.web.csrf.InvalidCsrfTokenException;
@@ -23,10 +24,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         this.tokenRepository = tokenRepository;
     }
 
-    @ExceptionHandler({AuthenticationException.class,
-            MissingCsrfTokenException.class,
-            InvalidCsrfTokenException.class,
-            SessionAuthenticationException.class})
+    @ExceptionHandler({AuthenticationException.class, MissingCsrfTokenException.class, InvalidCsrfTokenException.class, SessionAuthenticationException.class})
     public ErrorInfo handleAuthenticationException(RuntimeException ex, HttpServletRequest request, HttpServletResponse response){
         this.tokenRepository.clearToken(response);
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
